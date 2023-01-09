@@ -68,7 +68,7 @@ public final class AppTest {
                     .asString();
 
             assertThat(response.getStatus()).isEqualTo(code200);
-            assertThat(response.getBody()).contains("Анализатор страниц");
+            assertThat(response.getBody()).contains("РђРЅР°Р»РёР·Р°С‚РѕСЂ СЃС‚СЂР°РЅРёС†");
         }
     }
 
@@ -95,7 +95,7 @@ public final class AppTest {
             String content = response.getBody();
 
             assertThat(response.getStatus()).isEqualTo(code200);
-            assertThat(content).contains("Последняя проверка");
+            assertThat(content).contains("РџРѕСЃР»РµРґРЅСЏСЏ РїСЂРѕРІРµСЂРєР°");
         }
 
         @Test
@@ -118,7 +118,7 @@ public final class AppTest {
 
             assertThat(response.getStatus()).isEqualTo(code200);
             assertThat(content).contains(urlName);
-            assertThat(content).contains("Страница успешно добавлена");
+            assertThat(content).contains("РЎС‚СЂР°РЅРёС†Р° СѓСЃРїРµС€РЅРѕ РґРѕР±Р°РІР»РµРЅР°");
 
             Url actualUrl = new QUrl()
                     .name.equalTo(urlName)
@@ -148,7 +148,7 @@ public final class AppTest {
 
             assertThat(response.getStatus()).isEqualTo(code200);
             assertThat(content).contains(urlName);
-            assertThat(content).contains("Некорректный URL");
+            assertThat(content).contains("РќРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ URL");
         }
 
         @Test
@@ -171,7 +171,7 @@ public final class AppTest {
 
             assertThat(response.getStatus()).isEqualTo(code200);
             assertThat(content).contains(urlName);
-            assertThat(content).contains("Страница уже существует");
+            assertThat(content).contains("РЎС‚СЂР°РЅРёС†Р° СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚");
         }
 
         @Test
@@ -185,7 +185,7 @@ public final class AppTest {
             assertThat(response.getStatus()).isEqualTo(code200);
             assertThat(content).contains("https://www.test.com");
             assertThat(content).contains("description");
-            assertThat(content).contains("Запустить проверку");
+            assertThat(content).contains("Р—Р°РїСѓСЃС‚РёС‚СЊ РїСЂРѕРІРµСЂРєСѓ");
         }
 
         @Test
@@ -229,9 +229,9 @@ public final class AppTest {
 
             String content = responseResult.getBody();
 
-            assertThat(content).contains("Хекслет");
-            assertThat(content).contains("Живое онлайн сообщество");
-            assertThat(content).contains("Это заголовок h1");
+            assertThat(content).contains("РҐРµРєСЃР»РµС‚");
+            assertThat(content).contains("Р–РёРІРѕРµ РѕРЅР»Р°Р№РЅ СЃРѕРѕР±С‰РµСЃС‚РІРѕ");
+            assertThat(content).contains("Р­С‚Рѕ Р·Р°РіРѕР»РѕРІРѕРє h1");
 
             server.shutdown();
         }
