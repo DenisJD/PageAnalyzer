@@ -1,0 +1,4 @@
+.idea
+app/build
+app/.gradle
+app/database.mv.db

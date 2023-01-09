@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/application.html}">
+
+<section layout:fragment="content">
+    <div class="container-lg mt-5">
+        <h1>Сайты</h1>
+        <table class="table table-bordered table-hover mt-3">
+            <thead>
+            <tr>
+                <th class="col-1">ID</th>
+                <th>Имя</th>
+                <th class="col-2">Последняя проверка</th>
+                <th class="col-1">Код ответа</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="url : ${urls}" th:object="${url}">
+                <td th:text="*{getId()}"></td>
+                <td><a th:text="*{getName()}" th:href="@{/urls/{id}(id=*{getId()})}"></a></td>
+                <td>
+                    <span th:if="*{getTimeOfLastCheck() != null}" th:text="*{#temporals.format(getTimeOfLastCheck(), 'dd/MM/yyyy HH:mm')}"></span>
+                    <span th:unless="*{getTimeOfLastCheck() != null}"></span>
+                </td>
+                <td>
+                    <span th:if="*{getStatusCodeOfLastCheck() != -1}" th:text="*{getStatusCodeOfLastCheck()}"></span>
+                    <span th:unless="*{getStatusCodeOfLastCheck() != -1}"></span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <nav aria-label="Page navigation" th:if="${#lists.size(pages)}">
+            <ul class="pagination justify-content-center mt-5">
+                <li th:class="'page-item' + ${currentPage <= 1 ? ' disabled' : ''}">
+                    <a class="page-link" th:href="@{/urls(page=${currentPage - 1})}">Previous</a>
+                </li>
+                <li th:each="page : ${pages}" th:class="'page-item' + ${currentPage == page ? ' active' : ''}">
+                    <a class="page-link" th:href="@{/urls(page=${page})}" th:text="${page}"></a>
+                </li>
+                <li th:class="'page-item' + ${currentPage >= #lists.size(pages) ? ' disabled' : ''}">
+                    <a class="page-link" th:href="@{/urls(page=${currentPage + 1})}">Next</a>
+                </li>
+            </ul>
+        </nav>
+
+    </div>
+</section>
+</html>
