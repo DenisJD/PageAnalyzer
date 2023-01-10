@@ -21,7 +21,7 @@ public final class UrlCheck extends Model {
     private final String title;
     private final String h1;
     @Lob
-    @Column(columnDefinition = "varchar(255)")
+    @Column(columnDefinition = "text")
     private final String description;
     @ManyToOne
     @NotNull
