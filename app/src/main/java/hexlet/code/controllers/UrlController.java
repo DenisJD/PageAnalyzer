@@ -113,7 +113,9 @@ public final class UrlController {
             String urlName = url.getName();
 
             HttpResponse<String> response = Unirest.get(urlName).asString();
-            Document doc = Jsoup.connect(urlName).get();
+            String content = response.getBody();
+
+            Document doc = Jsoup.parse(content);
 
             int statusCode = response.getStatus();
             String title = doc.title();

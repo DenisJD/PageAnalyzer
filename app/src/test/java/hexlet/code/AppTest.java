@@ -196,7 +196,6 @@ public final class AppTest {
             String serverUrl = server.url("/").toString();
             String correctServerUrl = serverUrl.substring(0, serverUrl.length() - 1);
 
-            server.enqueue(new MockResponse());
             server.enqueue(new MockResponse().setBody(expectedBody));
 
             HttpResponse response = Unirest
@@ -221,6 +220,8 @@ public final class AppTest {
                     .get(baseUrl + "/urls/" + urlId)
                     .asString();
 
+            String responseBody = responseResult.getBody();
+            assertThat(responseBody).contains("Страница успешно проверена");
 
             List<UrlCheck> actualCheck = new QUrlCheck()
                     .findList();
