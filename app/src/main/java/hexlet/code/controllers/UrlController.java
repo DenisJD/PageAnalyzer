@@ -26,12 +26,19 @@ public final class UrlController {
             URL url = new URL(inputUrl);
             String protocol = url.getProtocol();
             String authority = url.getAuthority();
-            InternetDomainName publicSuffix = InternetDomainName.from(authority).publicSuffix();
+            if (authority.contains("localhost")) {
+                return protocol + "://" + authority;
+            }
+
+            InternetDomainName publicSuffix = InternetDomainName
+                    .from(authority.split(":")[0])
+                    .publicSuffix();
+
             if (publicSuffix != null) {
                 return protocol + "://" + authority;
-            } else {
-                return null;
             }
+            return null;
+
         } catch (MalformedURLException e) {
             return null;
         }
