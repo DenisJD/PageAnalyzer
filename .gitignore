@@ -2,3 +2,4 @@
 app/build
 app/.gradle
 app/database.mv.db
+app/database.trace.db
