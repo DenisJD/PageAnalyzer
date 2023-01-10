@@ -1,5 +1,6 @@
 package hexlet.code.controllers;
 
+import com.google.common.net.InternetDomainName;
 import hexlet.code.domain.Url;
 import hexlet.code.domain.UrlCheck;
 import hexlet.code.domain.query.QUrl;
@@ -23,7 +24,14 @@ public final class UrlController {
     public static String parseUrl(String inputUrl) {
         try {
             URL url = new URL(inputUrl);
-            return url.getProtocol() + "://" + url.getAuthority();
+            String protocol = url.getProtocol();
+            String authority = url.getAuthority();
+            InternetDomainName publicSuffix = InternetDomainName.from(authority).publicSuffix();
+            if (publicSuffix != null) {
+                return protocol + "://" + authority;
+            } else {
+                return null;
+            }
         } catch (MalformedURLException e) {
             return null;
         }
