@@ -1,6 +1,5 @@
 package hexlet.code.controllers;
 
-import com.google.common.net.InternetDomainName;
 import hexlet.code.domain.Url;
 import hexlet.code.domain.UrlCheck;
 import hexlet.code.domain.query.QUrl;
@@ -21,24 +20,13 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public final class UrlController {
+
     public static String parseUrl(String inputUrl) {
         try {
             URL url = new URL(inputUrl);
             String protocol = url.getProtocol();
             String authority = url.getAuthority();
-            if (authority.contains("localhost")) {
-                return protocol + "://" + authority;
-            }
-
-            InternetDomainName publicSuffix = InternetDomainName
-                    .from(authority.split(":")[0])
-                    .publicSuffix();
-
-            if (publicSuffix != null) {
-                return protocol + "://" + authority;
-            }
-            return null;
-
+            return protocol + "://" + authority;
         } catch (MalformedURLException e) {
             return null;
         }
@@ -124,10 +112,16 @@ public final class UrlController {
                 .findOne();
 
         try {
-            assert url != null;
+            if (url == null) {
+                throw new NotFoundResponse();
+            }
+
             String urlName = url.getName();
 
-            HttpResponse<String> response = Unirest.get(urlName).asString();
+            HttpResponse<String> response = Unirest
+                    .get(urlName)
+                    .asString();
+
             String content = response.getBody();
 
             Document doc = Jsoup.parse(content);
@@ -153,7 +147,7 @@ public final class UrlController {
             ctx.sessionAttribute("flash", "Страница успешно проверена");
             ctx.sessionAttribute("flash-type", "success");
         } catch (UnirestException e) {
-            ctx.sessionAttribute("flash", "Не удалось выполнить проверку");
+            ctx.sessionAttribute("flash", "Некорректный адрес");
             ctx.sessionAttribute("flash-type", "danger");
         } finally {
             ctx.redirect("/urls/" + id);
