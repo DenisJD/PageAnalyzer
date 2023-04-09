@@ -6,3 +6,18 @@
 
 #### Page Analyzer is a website that analyzes the specified pages for SEO suitability. 
 #### Demo on [Render](https://page-analyzer-3kf3.onrender.com)
+
+### 1 - Welcome page
+![Image alt](https://github.com/DenisJD/images/raw/main/analyzer/1.png)
+### 2 - Add Site
+![Image alt](https://github.com/DenisJD/images/raw/main/analyzer/2.png)
+###
+![Image alt](https://github.com/DenisJD/images/raw/main/analyzer/4.png)
+### 3 - Check site
+![Image alt](https://github.com/DenisJD/images/raw/main/analyzer/5.png)
+###
+![Image alt](https://github.com/DenisJD/images/raw/main/analyzer/3.png)
+###
+![Image alt](https://github.com/DenisJD/images/raw/main/analyzer/7.png)
+### 4 - Incorrect URL
+![Image alt](https://github.com/DenisJD/images/raw/main/analyzer/6.png)
